@@ -4,14 +4,7 @@ class Enemy extends GameObject {
   float fireballInterval = 500; // Millisegundos
 
   Enemy(float x, float y, float size) {
-    super(x, y, size);
-  }
-
-  //Arco para mostrar la visión de 30 grados.
-  void displayFieldOfView() {
-    noFill();
-    stroke(255, 0, 0);
-    arc(position.x, position.y, size * 4, size * 4, -fieldOfView / 2, fieldOfView / 2);
+    super(x, y, size, "/assets/Skull.png");
   }
 
   boolean detectPlayer(Player player) {
@@ -32,7 +25,7 @@ class Enemy extends GameObject {
       PVector fireballDirection = PVector.sub(player.position, position).normalize();
       PVector fireballPos = PVector.add(position, fireballDirection.copy().mult(size / 2));
       
-      fireballs.add(new Fireball(fireballPos, fireballDirection, 10, 4));
+      fireballs.add(new Fireball(fireballPos, fireballDirection, 80, 4));
       lastFireballTime = millis();
     }
   }

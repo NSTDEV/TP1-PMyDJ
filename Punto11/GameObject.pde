@@ -1,15 +1,17 @@
 class GameObject {
   PVector position;
+  PImage image;
   float size;
-
-  GameObject(float x, float y, float size) {
-    this.position = new PVector(x, y);
+  
+  GameObject(float x, float y, float size, String imageName) {
+    position = new PVector(x, y);
     this.size = size;
+    image = loadImage(imageName);
+    image.resize((int)size, (int)size);
   }
-
-  //Imagen/forma.
-  void display(int objColor) {
-    fill(objColor);
-    ellipse(position.x, position.y, size, size);
+  
+  void display() {
+    imageMode(CENTER);
+    image(image, position.x, position.y);
   }
 }
