@@ -1,7 +1,6 @@
 class Enemy extends GameObject {
-  float fieldOfView = radians(30); // 30 degrees in radians
   float lastFireballTime = 0;
-  float fireballInterval = 500; // Millisegundos
+  float fireballInterval = 500; //Millisegundos
 
   Enemy(float x, float y, float size) {
     super(x, y, size, "/assets/Skull.png");
@@ -9,15 +8,10 @@ class Enemy extends GameObject {
 
   boolean detectPlayer(Player player) {
     PVector direction = PVector.sub(player.position, position);
-    float angle = degrees(direction.heading());
+    PVector rightDirection = new PVector(1, 0);
+    float angle = degrees(PVector.angleBetween(rightDirection, direction));
 
-    // Normalizar el ángulo en el rango de 0 a 360 grados
-    if (angle < 0) {
-      angle += 360;
-    }
-
-    // Verificar si el ángulo está dentro del campo de visión de 30 grados hacia la derecha
-    return angle >= 345 || angle <= 15; // Ajustado en 0 grados (derecha)
+    return angle <= 15;
   }
 
   void fire(ArrayList<Fireball> fireballs, Player player) {

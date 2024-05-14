@@ -7,7 +7,7 @@ class GameObject {
     position = new PVector(x, y);
     this.size = size;
     image = loadImage(imageName);
-    image.resize((int)size, (int)size);
+    image.resize((int)size, (int)size); //Redimensionar la imagen al tamaño del objeto
   }
   
   void display() {

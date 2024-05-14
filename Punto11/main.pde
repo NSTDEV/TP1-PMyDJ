@@ -22,7 +22,7 @@ void draw() {
     fireball.move();
     fireball.display();
 
-    if (fireball.hasHit(player) || fireball.isOffScreen()) {
+    if (fireball.shouldRemove(player)) {
       fireballs.remove(i);
     }
   }
