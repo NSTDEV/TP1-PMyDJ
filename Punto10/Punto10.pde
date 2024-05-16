@@ -2,31 +2,41 @@ PVector A, B, C;
 
 void setup() {
   size(800, 600);
-  background(255);
-  
-  A = new PVector(-100, -200);
-  B = new PVector(400, -100);
-  C = new PVector(50, 200);
+  background(0);
+
+  A = new PVector(-1, -2);
+  B = new PVector(4, -1);
+  C = new PVector(5, 2);
 
   translate(200, 250);
-  // Dibujar vectores AB, AC y el paralelogramo
-  stroke(0, 0, 255); // Color azul para AB
-  drawVector(A, B);
+  scale(50);
+  strokeWeight(0.05);
   
-  stroke(255, 0, 0); // Color rojo para AC
-  drawVector(A, C);
+  // Crear vectores
+  Vector AB = new Vector(A, B);
+  Vector AC = new Vector(A, C);
   
-  PVector D = PVector.add(PVector.sub(B, A), C); // Calcular punto D como la suma de AB y AC
+  // Dibujar vectores
+  stroke(0, 0, 255); //Azul para AB
+  AB.draw();
   
-  stroke(0, 255, 0); // Color verde para AD
-  drawVector(A, D);
+  stroke(255, 0, 0); //Rojo para AC
+  AC.draw();
   
-  // Dibujar el paralelogramo
-  drawVector(B, D);
-  drawVector(C, D);
-}
-
-// Función para dibujar un vector desde el punto start hasta el punto end
-void drawVector(PVector start, PVector end) {
-  line(start.x, start.y, end.x, end.y);
+  //Punto D usando la suma de vectores
+  Vector AD = AB.sumar(AC);
+  
+  stroke(0, 255, 0); //Verde para AD
+  AD.draw();
+  
+  //Paralelogramo
+  Vector BD = new Vector(B, AD.destino);
+  Vector CD = new Vector(C, AD.destino);
+  
+  BD.draw();
+  CD.draw();
+  
+  //AB y AC como vectores.
+  println("Vector AB: (" + int(B.x - A.x) + ", " + int(B.y - A.y) + ")");
+  println("Vector AC: (" + int(C.y - A.y) + ", " + int(C.y - A.y) + ")");
 }
