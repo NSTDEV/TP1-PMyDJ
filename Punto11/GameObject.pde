@@ -1,7 +1,7 @@
 class GameObject {
-  PVector position;
-  PImage image;
-  float size;
+  protected PVector position;
+  protected PImage image;
+  protected float size;
   
   GameObject(float x, float y, float size, String imageName) {
     position = new PVector(x, y);

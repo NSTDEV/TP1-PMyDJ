@@ -1,7 +1,7 @@
 class Fireball extends GameObject {
-  PVector direction;
-  float speed;
-  boolean hasHit;
+  private PVector direction;
+  private float speed;
+  private boolean hasHit;
 
   Fireball(PVector pos, PVector dir, float size, float speed) {
     super(pos.x, pos.y, size, "/assets/Fire.png");

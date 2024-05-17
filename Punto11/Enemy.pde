@@ -1,6 +1,6 @@
 class Enemy extends GameObject {
-  float lastFireballTime = 0;
-  float fireballInterval = 500; // Millisegundos
+  private float lastFireballTime = 0;
+  private float fireballInterval = 500; // Millisegundos
 
   Enemy(float x, float y, float size) {
     super(x, y, size, "/assets/Skull.png");
