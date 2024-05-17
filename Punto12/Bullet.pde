@@ -1,5 +1,5 @@
 class Bullet extends GameObject {
-  float bulletSpeed, bulletDirection;
+  private float bulletSpeed, bulletDirection;
 
   Bullet(float x, float y, float size, float bulletDirection, String rutaImagen) {
     super(x, y, size, rutaImagen);
@@ -7,7 +7,7 @@ class Bullet extends GameObject {
     this.bulletDirection = bulletDirection;
   }
 
-  void mover() {
+  void move() {
     x += bulletSpeed * cos(bulletDirection);
     y += bulletSpeed * sin(bulletDirection);
   }

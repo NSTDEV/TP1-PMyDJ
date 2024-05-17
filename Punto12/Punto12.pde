@@ -5,7 +5,7 @@ void setup() {
   size(1000, 700);
   tank = new Tank(width / 2, height / 2, 110, 250, "/assets/Tank.png");
   player = loadImage("/assets/Player.png");
-  player.resize(70, 70);
+  player.resize(55, 60);
   
   noCursor();
 }

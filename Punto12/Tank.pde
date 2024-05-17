@@ -1,6 +1,6 @@
 class Tank extends GameObject {
-  float angle, shootRange;
-  boolean shooting = false;
+  private float angle, shootRange;
+  private boolean shooting = false;
   Bullet bullet;
 
   Tank(float x, float y, float size, float shootRange, String spriteRoute) {
@@ -10,8 +10,8 @@ class Tank extends GameObject {
   }
 
   void rotateToTarget(float targetX, float targetY) {
-    float distancia = dist(this.x, this.y, targetX, targetY);
-    if (distancia < shootRange) {
+    float distance = dist(this.x, this.y, targetX, targetY);
+    if (distance < shootRange) {
       float dx = targetX - this.x;
       float dy = targetY - this.y;
       this.angle = atan2(dy, dx);
@@ -28,7 +28,7 @@ class Tank extends GameObject {
 
   void reload() {
     if (shooting && bullet != null) {
-      bullet.mover();
+      bullet.move();
       bullet.draw();
       if (bullet.targetFocus()) {
         shooting = false;

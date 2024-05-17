@@ -1,6 +1,6 @@
 class GameObject {
-  float x, y, size;
-  PImage sprite;
+  protected float x, y, size;
+  protected PImage sprite;
 
   GameObject(float x, float y, float size, String spriteRoute) {
     this.x = x;
