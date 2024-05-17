@@ -1,8 +1,8 @@
 class Bullet extends GameObject {
   private float bulletSpeed, bulletDirection;
 
-  Bullet(float x, float y, float size, float bulletDirection, String rutaImagen) {
-    super(x, y, size, rutaImagen);
+  Bullet(float x, float y, float size, float bulletDirection) {
+    super(x, y, size, "/assets/BulletTank.png");
     this.bulletSpeed = 10;
     this.bulletDirection = bulletDirection;
   }
