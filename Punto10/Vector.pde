@@ -1,6 +1,6 @@
 class Vector {
-  PVector origen;
-  PVector destino;
+  private PVector origen;
+  private PVector destino;
 
   Vector(PVector origen, PVector destino) {
     this.origen = origen;
