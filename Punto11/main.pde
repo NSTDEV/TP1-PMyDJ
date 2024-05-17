@@ -6,6 +6,8 @@ void setup() {
   size(800, 600);
   player = new Player(width / 2, height / 2, 50);
   enemy = new Enemy(width / 4, height / 2, 80);
+  
+  noCursor();
 }
 
 void draw() {
