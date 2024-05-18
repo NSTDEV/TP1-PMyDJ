@@ -1,10 +1,10 @@
 class GameObject {
-  protected float x, y, size;
+  protected PVector position;
+  protected float size;
   protected PImage sprite;
 
-  GameObject(float x, float y, float size, String spriteRoute) {
-    this.x = x;
-    this.y = y;
+  GameObject(PVector position, float size, String spriteRoute) {
+    this.position = position;
     this.size = size;
     if (spriteRoute != null && !spriteRoute.isEmpty()) {
       this.sprite = loadImage(spriteRoute);

@@ -1,24 +1,21 @@
 class Player extends GameObject {
 
-  Player(float x, float y, float size) {
-    super(x, y, size, "/assets/Player.png");
+  Player(PVector position, float size) {
+    super(position, size, "/assets/Player.png");
   }
 
   void updatePosition() {
-    this.x = mouseX;
-    this.y = mouseY;
+    position.set(mouseX, mouseY);
   }
 
-  void draw() {
-    pushMatrix();
-    translate(x, y);
+  void display() {
     imageMode(CENTER);
+    
     if (sprite != null) {
-      image(sprite, 0, 0, size, size);
+      image(sprite, position.x, position.y, size, size);
     } else {
       fill(255, 0, 0);
-      ellipse(0, 0, size, size);
+      ellipse(position.x, position.y, size, size);
     }
-    popMatrix();
   }
 }

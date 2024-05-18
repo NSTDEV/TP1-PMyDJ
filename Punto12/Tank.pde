@@ -1,52 +1,56 @@
 class Tank extends GameObject {
-  private float angle, shootRange;
-  private boolean shooting = false;
-  Bullet bullet;
+  private float angle, shootRange, lastBullet, bulletInterval;
+  private ArrayList<Bullet> bullets;
 
-  Tank(float x, float y, float size, float shootRange) {
-    super(x, y, size, "/assets/Tank.png");
+  Tank(PVector position, float size, float shootRange) {
+    super(position, size, "/assets/Tank.png");
     this.shootRange = shootRange;
-    this.angle = 0;
+    angle = 0;
+    bullets = new ArrayList<>();
+    bulletInterval = 500;
+    lastBullet = 0;
   }
 
-  void rotateToTarget(float targetX, float targetY) {
-    float distance = dist(this.x, this.y, targetX, targetY);
+  void focusAndFire(PVector target) {
+    float distance = dist(position.x, position.y, target.x, target.y);
+
     if (distance < shootRange) {
-      float dx = targetX - this.x;
-      float dy = targetY - this.y;
-      this.angle = atan2(dy, dx);
-    }
-  }
+      PVector distanceCoordinates = new PVector(target.x - position.x, target.y - position.y);
+      angle = atan2(distanceCoordinates.y, distanceCoordinates.x);
 
-  void shoot(float targetX, float targetY) {
-    float distance = dist(this.x, this.y, targetX, targetY);
-    if (distance < shootRange && !shooting) {
-      bullet = new Bullet(this.x, this.y, 35, this.angle);
-      shooting = true;
-    }
-  }
-
-  void reload() {
-    if (shooting && bullet != null) {
-      bullet.move();
-      bullet.draw();
-      if (bullet.targetFocus()) {
-        shooting = false;
-        bullet = null;
+      if (millis() - lastBullet > bulletInterval) {
+        bullets.add(new Bullet(new PVector(position.x, position.y), 35, angle));
+        lastBullet = millis();
       }
     }
   }
 
-  void draw() {
-    pushMatrix();
-    rotate(angle);
+  void reload() {
+    for (int i = bullets.size() - 1; i >= 0; i--) {
+      Bullet b = bullets.get(i);
+      b.move();
+      b.display();
+
+      if (b.bulletCollision()) {
+        bullets.remove(i);
+      }
+    }
+  }
+
+  void display() {
+    pushMatrix(); //Guarda la matriz actual.
     imageMode(CENTER);
+    translate(position.x, position.y);
+    rotate(angle);
+    
     if (sprite != null) {
       image(sprite, 0, 0, size, size);
     } else {
       fill(255, 0, 0);
       ellipse(0, 0, size, size);
     }
+
     popMatrix();
+    reload();
   }
 }
