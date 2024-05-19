@@ -4,8 +4,8 @@ ArrayList<Fireball> fireballs = new ArrayList<Fireball>();
 
 void setup() {
   size(800, 600);
-  player = new Player(width / 2, height / 2, 50);
-  enemy = new Enemy(width / 4, height / 2, 80);
+  player = new Player(new PVector(0, 0), 50);
+  enemy = new Enemy(new PVector(width / 3, height / 2), 80);
   
   noCursor();
 }
@@ -14,8 +14,8 @@ void draw() {
   background(0);
 
   player.display();
-  enemy.display();
   player.updatePosition();
+  enemy.display();
 
   enemy.fire(fireballs, player);
 

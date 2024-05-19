@@ -3,11 +3,11 @@ class GameObject {
   protected PImage image;
   protected float size;
   
-  GameObject(float x, float y, float size, String imageName) {
-    position = new PVector(x, y);
+  GameObject(PVector position, float size, String imageName) {
+    this.position = position;
     this.size = size;
     image = loadImage(imageName);
-    image.resize((int)size, (int)size); //Redimensionar la imagen al tamaño del objeto
+    image.resize((int)size, (int)size);
   }
   
   void display() {

@@ -3,9 +3,9 @@ class Fireball extends GameObject {
   private float speed;
   private boolean hasHit;
 
-  Fireball(PVector pos, PVector dir, float size, float speed) {
-    super(pos.x, pos.y, size, "/assets/Fire.png");
-    this.direction = dir.copy();
+  Fireball(PVector position, PVector direction, float size, float speed) {
+    super(position, size, "/assets/Fire.png");
+    this.direction = direction.copy();
     this.speed = speed;
   }
 
