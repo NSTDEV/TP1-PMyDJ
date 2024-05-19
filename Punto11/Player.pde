@@ -4,7 +4,6 @@ class Player extends GameObject {
   }
 
   void updatePosition() {
-    position.x = mouseX;
-    position.y = mouseY;
+    position.set(mouseX, mouseY);
   }
 }

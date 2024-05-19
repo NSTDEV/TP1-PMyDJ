@@ -10,17 +10,29 @@ class Fireball extends GameObject {
   }
 
   void move() {
-    position.add(direction.copy().mult(speed));
+    position.x += speed * cos(direction.x);
+    position.y += speed * sin(direction.y);
   }
 
   boolean shouldRemove(Player player) {
-    if(dist(position.x, position.y, player.position.x, player.position.y) < (size + player.size) / 2){
+    if (dist(position.x, position.y, player.position.x, player.position.y) < (size + player.size) / 2) {
       hasHit = true;
-    } else if(position.x < 0 || position.x > width || position.y < 0 || position.y > height){
+    } else if (position.x < 0 || position.x > width || position.y < 0 || position.y > height) {
       hasHit = true;
     } else {
       hasHit = false;
     }
     return hasHit;
+  }
+
+  void display() {
+    pushMatrix(); //Guarda la matriz de actual.
+    imageMode(CENTER);
+    translate(position.x, position.y);
+    rotate(direction.y);
+
+    image(sprite, 0, 0, size, size);
+
+    popMatrix();
   }
 }
