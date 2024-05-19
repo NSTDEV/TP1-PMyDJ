@@ -6,8 +6,12 @@ class GameObject {
   GameObject(PVector position, float size, String spriteRoute) {
     this.position = position;
     this.size = size;
-    if (spriteRoute != null && !spriteRoute.isEmpty()) {
-      this.sprite = loadImage(spriteRoute);
-    }
+    
+    sprite = loadImage(spriteRoute);
+  }
+
+  void display() {
+    imageMode(CENTER);
+    image(sprite, position.x, position.y, size, size);
   }
 }

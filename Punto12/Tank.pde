@@ -5,6 +5,7 @@ class Tank extends GameObject {
   Tank(PVector position, float size, float shootRange) {
     super(position, size, "/assets/Tank.png");
     this.shootRange = shootRange;
+    
     angle = 0;
     bullets = new ArrayList<>();
     bulletInterval = 500;
@@ -31,7 +32,7 @@ class Tank extends GameObject {
       b.move();
       b.display();
 
-      if (b.bulletCollision()) {
+      if (b.shouldRemove(player)) {
         bullets.remove(i);
       }
     }
@@ -42,13 +43,8 @@ class Tank extends GameObject {
     imageMode(CENTER);
     translate(position.x, position.y);
     rotate(angle);
-    
-    if (sprite != null) {
-      image(sprite, 0, 0, size, size);
-    } else {
-      fill(255, 0, 0);
-      ellipse(0, 0, size, size);
-    }
+
+    image(sprite, 0, 0, size, size);
 
     popMatrix();
     reload();
