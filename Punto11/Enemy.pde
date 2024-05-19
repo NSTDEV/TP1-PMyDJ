@@ -1,9 +1,10 @@
 class Enemy extends GameObject {
-  float lastFireballTime = 0;
-  float fireballInterval = 500; // Millisegundos
+  private float lastFireballTime, fireballInterval;
 
-  Enemy(float x, float y, float size) {
-    super(x, y, size, "/assets/Skull.png");
+  Enemy(PVector position, float size) {
+    super(position, size, "/assets/Skull.png");
+    lastFireballTime = 0;
+    fireballInterval = 500; // Millisegundos
   }
 
   boolean detectPlayer(Player player) {
@@ -11,7 +12,7 @@ class Enemy extends GameObject {
     float angle = degrees(atan2(direction.y, direction.x));
 
     //Arriba y abajo
-    return angle >= -15 && angle <= 15;
+    return angle >= -30 && angle <= 30;
   }
 
   void fire(ArrayList<Fireball> fireballs, Player player) {

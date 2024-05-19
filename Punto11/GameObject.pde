@@ -1,17 +1,17 @@
 class GameObject {
-  PVector position;
-  PImage image;
-  float size;
+  protected PVector position;
+  protected PImage sprite;
+  protected float size;
   
-  GameObject(float x, float y, float size, String imageName) {
-    position = new PVector(x, y);
+  GameObject(PVector position, float size, String imageName) {
+    this.position = position;
     this.size = size;
-    image = loadImage(imageName);
-    image.resize((int)size, (int)size); //Redimensionar la imagen al tamaño del objeto
+    sprite = loadImage(imageName);
+    sprite.resize((int)size, (int)size);
   }
   
   void display() {
     imageMode(CENTER);
-    image(image, position.x, position.y);
+    image(sprite, position.x, position.y);
   }
 }
